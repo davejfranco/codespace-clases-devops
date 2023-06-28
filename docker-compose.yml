@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+
+  proxy:
+    image: nginx:1.24-alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./app/ops/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
+  
+  app:
+    image: davejfranco/codespace-app:latest
+    ports:
+      - 3000
+    env_file:
+     - ./app/env
+    command: sh -c 'sleep 15; npx ts-node app.ts'
+    depends_on:
+      - db
+  
+  db:
+    image: mysql/mysql-server
+    ports:
+      - 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD="cM5*6@FmhfIyV9;jLA;;:6s25=5@Nf7A"
+    volumes:
+      - ./app/ops:/docker-entrypoint-initdb.d
+
+    

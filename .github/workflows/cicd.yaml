@@ -9,7 +9,7 @@ env:
 
 jobs:
 
-  CI:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -33,12 +33,11 @@ jobs:
           echo $tag
     
     outputs:
-      version: ${{ steps.set-image.outputs.tag }}
-      
+      version: ${{ steps.set-image.outputs.tag }}     
   
-  CD:
+  cd:
     runs-on: ubuntu-latest
-    needs: CI
+    needs: ci
     steps:
       - name: Checkout repository
         id: checkout

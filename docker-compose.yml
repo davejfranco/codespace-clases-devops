@@ -29,5 +29,4 @@ services:
       - MYSQL_ROOT_PASSWORD="cM5*6@FmhfIyV9;jLA;;:6s25=5@Nf7A"
     volumes:
       - ./app/ops:/docker-entrypoint-initdb.d
-
-    
+ 
